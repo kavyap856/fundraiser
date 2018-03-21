@@ -23,33 +23,38 @@ export default class login_form extends Component {
     handlePasswordChange(event) {
         this.setState({ password: event.target.value });
     }
+
     handleSubmit(event) {
-
-        var object = {
-
-            "email": this.state.email,
-            "password": this.state.password
+        if (this.state.email == "" || this.state.password == "") {
+            alert("Enter values for all fields")
         }
-        postCall("fundraisers/login", object).then((response) => {
-            if (response.status == 200) {
-                this.userdata=response.data.user_data;
-                this.auth=response.headers.auth;
-                localStorage.setItem("userData",JSON.stringify(this.userdata));
-                localStorage.setItem("AuthCode",JSON.stringify(this.auth));
-                this.props.history.push("/userhome");
+        else {
+            var object = {
+
+                "email": this.state.email,
+                "password": this.state.password
             }
-            else { alert("Failed"); }
-
-             console.log("email"+this.userdata.email);
-
-        });
+            postCall("fundraisers/login", object).then((response) => {
+                if (response.status == 200) {
+                    this.userdata = response.data.user_data;
+                    this.auth = response.headers.auth;
+                    localStorage.setItem("userData", JSON.stringify(this.userdata.id));
+                    localStorage.setItem("userDataMail", JSON.stringify(this.userdata.email));
+                    localStorage.setItem("AuthCode", JSON.stringify(this.auth));
+                    this.props.history.push("/userhome");
+                }
+               
+            })
+            .catch(function(error)
+            {
+                alert("Login Failed!! \nInvalid Credentials")
+            }
+            )
+        }
     }
     render() {
         return (
             <div >
-
-                <Navbar />
-
                 <Grid>
                     <Row>
                         <Col sm={4}></Col>

@@ -8,18 +8,17 @@ import { getCall } from '../services/api';
 export default class UserProfile extends Component {
     constructor(props) {
         super(props);
-        this.userData = JSON.parse(localStorage.getItem("userData"));
         this.state = {
             profiledetails: []
         }
-    }
-    componentDidMount() {
-        var url = "fundraisers/" + this.userData.id;
+        this.userDataId = JSON.parse(localStorage.getItem("userData"));
+        var url = "fundraisers/" + this.userDataId;
         getCall(url)
             .then((response) => {
-                this.setState({ profiledetails: response.data });
+                this.setState({profiledetails: response.data });
                 console.log(response.data);
             });
+      
     }
     render() {
         return (
@@ -28,59 +27,85 @@ export default class UserProfile extends Component {
                 <Row>
                     <Col sm="4">
 
-                        <span>DOB : </span><span>111111</span>
+                        <span className="formlabel">DOB : </span><span>{this.state.profiledetails.dob}</span>
                     </Col>
                     <Col sm="4">
 
-                        <span>Phone : </span><span>{this.state.profiledetails.phone}</span>
+                        <span className="formlabel">Phone : </span><span>{this.state.profiledetails.phone}</span>
                     </Col>
                     <Col sm="4">
 
-                        <span>Organisation : </span><span>1111fff11</span>
+                        <span className="formlabel">Organisation : </span><span>{this.state.profiledetails.organization_name}</span>
                     </Col>
                 </Row>
-                <hr />
-                <hr />
 
-                <Col sm="4">
-                    <span>Address</span>
-                </Col>
+                <div className="address">
+                    <hr />
 
-                <hr />
+                    <span >Address</span>
+
+                    <hr />
+                </div>
+
 
                 <Row>
-                    <Col sm="2">
-                        <p >Street :</p>
+                <Col sm="4"></Col>
+                
+                    <Col sm="1">
+                        <p className="formlabel">Street : </p>
                     </Col>
-                    <Col sm="2">
-                        <p >aaaaaa</p>
+                    <Col sm="1">
+                        <p >{this.state.profiledetails.street}</p>
                     </Col>
-                    <Col sm="2"></Col>
-                    <Col sm="2">
-                        <p >City :</p>
+                    
+                    <Col sm="1">
+                        <p className="formlabel">City :</p>
                     </Col>
-                    <Col sm="2">
-                        <p >aaaaaa</p>
+                    <Col sm="1">
+                        <p >{this.state.profiledetails.city}</p>
                     </Col>
                 </Row>
 
                 <Row>
-                    <Col sm="2">
-                        <p >State :</p>
+                <Col sm="4"></Col>
+               
+                    <Col sm="1">
+                        <p className="formlabel">State :</p>
                     </Col>
-                    <Col sm="2">
-                        <p >aaaaaa</p>
+                    <Col sm="1">
+                        <p >{this.state.profiledetails.state}</p>
                     </Col>
-                    <Col sm="2"></Col>
-                    <Col sm="2">
-                        <p >Zip :</p>
+                   
+                    <Col sm="1">
+                        <p className="formlabel">Zip :</p>
                     </Col>
-                    <Col sm="2">
-                        <p >aaaaaa</p>
+                    <Col sm="1">
+                        <p >{this.state.profiledetails.zip}</p>
                     </Col>
                 </Row>
 
-
+                <hr />
+                <Row>
+                    <Col sm="2">
+                        <p className="formlabel">Facebook url :</p>
+                    </Col>
+                    <Col sm="2">
+                        <p >{this.state.profiledetails.facebook_link}</p>
+                    </Col>
+                    <Col sm="2">
+                        <p className="formlabel">Twitter url :</p>
+                    </Col>
+                    <Col sm="2">
+                        <p ><p >{this.state.profiledetails.twitter_link}</p></p>
+                    </Col>
+                    <Col sm="2">
+                        <p className="formlabel">Google url :</p>
+                    </Col>
+                    <Col sm="2">
+                        <p >{this.state.profiledetails.google_link}</p>
+                    </Col>
+                </Row>
+                <hr />
             </Col>
 
         )

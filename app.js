@@ -21,6 +21,11 @@ export default class App extends Component {
                             component={login_form}
                         />
                         <Route
+                            exact
+                            path="/login"
+                            component={login_form}
+                        />
+                        <Route
                             path="/register"
                             component={registration_form}
                         />

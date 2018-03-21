@@ -21,7 +21,7 @@ export default class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <a className="navbar-brand" href="#"></a>
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li className="nav-item active">
+                        {/* <li className="nav-item active">
                             <a className="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item">
@@ -29,7 +29,7 @@ export default class Navbar extends Component {
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/register">Sign Up</Link>
-                        </li>
+                        </li> */}
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                         <Link className="logout btn btn-outline-success my-2 my-sm-0" role="button" to="/" onClick={this.logout} > Logout</Link>
